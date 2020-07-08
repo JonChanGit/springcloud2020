@@ -1,4 +1,4 @@
-package com.example.cloud_consumer_order80.controller;
+package com.example.cloud_consumer_zk_order80.controller;
 
 import com.example.cloud_api_commons.entity.Payment;
 import lombok.AllArgsConstructor;
