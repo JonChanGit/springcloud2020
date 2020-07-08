@@ -1,7 +1,7 @@
-package com.example.cloud_pay_8001.controller;
+package com.example.cloud_pay_8002.controller;
 
 import com.example.cloud_api_commons.entity.Payment;
-import com.example.cloud_pay_8001.service.PaymentService;
+import com.example.cloud_pay_8002.service.PaymentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
