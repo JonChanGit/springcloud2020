@@ -9,6 +9,7 @@
     <module>cloud_pay_8001</module>
     <module>cloud_pay_8006</module>
     <module>cloud-consumer-order80</module>
+    <module>cloud-consumer-consul-order80</module>
     <module>cloud-api-commons</module>
   </modules>
   <name>demo</name>

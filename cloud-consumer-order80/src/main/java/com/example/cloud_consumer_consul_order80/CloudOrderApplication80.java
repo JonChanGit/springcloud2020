@@ -1,4 +1,4 @@
-package com.example.cloud_consumer_order80;
+package com.example.cloud_consumer_consul_order80;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

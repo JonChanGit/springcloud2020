@@ -1,4 +1,4 @@
-package com.example.cloud_consumer_order80.controller;
+package com.example.cloud_consumer_consul_order80.controller;
 
 import com.example.cloud_api_commons.entity.Payment;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 @AllArgsConstructor
 public class OrderController {
-  public static final String PAYMENT_URL = "http://localhost:8001";
+  public static final String PAYMENT_URL = "http://cloud-payment-service";
   private RestTemplate restTemplate;
 
   @PostMapping(value = "/consumer/payment/create")

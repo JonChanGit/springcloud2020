@@ -18,6 +18,8 @@ spring:
       port: 8500
       discovery:
         service-name: ${spring.application.name}
+        hostname: 192.168.8.78 # 本机IP 解决Consul控制面板❌
+
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.example.cloud_pay_8001.entity
