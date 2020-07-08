@@ -1,7 +1,7 @@
 package com.example.cloud_pay_8001.service;
 
+import com.example.cloud_api_commons.entity.Payment;
 import com.example.cloud_pay_8001.dao.PaymentDao;
-import com.example.cloud_pay_8001.entity.Payment;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

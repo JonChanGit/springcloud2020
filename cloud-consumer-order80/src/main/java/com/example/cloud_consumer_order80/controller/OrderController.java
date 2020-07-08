@@ -1,6 +1,6 @@
 package com.example.cloud_consumer_order80.controller;
 
-import com.example.cloud_consumer_order80.entity.Payment;
+import com.example.cloud_api_commons.entity.Payment;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

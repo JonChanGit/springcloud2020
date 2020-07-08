@@ -12,6 +12,11 @@
   <artifactId>cloud_pay_8001</artifactId>
 
   <dependencies>
+    <dependency><!-- 引用自己定义的api通用包，可以使用Payment支付Entity -->
+      <groupId>com.example</groupId>
+      <artifactId>cloud-api-commons</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>

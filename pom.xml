@@ -8,6 +8,7 @@
   <modules>
     <module>cloud_pay_8001</module>
     <module>cloud-consumer-order80</module>
+    <module>cloud-api-commons</module>
   </modules>
   <name>demo</name>
   <packaging>pom</packaging>
@@ -21,6 +22,13 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency><!-- 引用自己定义的api通用包，可以使用Payment支付Entity -->
+        <groupId>com.example</groupId>
+        <artifactId>cloud-api-commons</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
