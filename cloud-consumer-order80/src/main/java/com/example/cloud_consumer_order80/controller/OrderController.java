@@ -33,4 +33,14 @@ public class OrderController {
   public ResponseEntity<Payment> getPayment(@PathVariable("id") Long id) {
     return rpcService.getPaymentById(id);
   }
+
+
+  /**
+   * 超时测试
+   * @return
+   */
+  @GetMapping(value = "timeout")
+  public ResponseEntity<String> timeout() {
+    return rpcService.timeout();
+  }
 }

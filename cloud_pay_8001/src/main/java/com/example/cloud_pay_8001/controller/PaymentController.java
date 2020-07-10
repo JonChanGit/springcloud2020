@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author Jon Chan
  * @date 2020/7/8 8:44
@@ -32,4 +34,15 @@ public class PaymentController {
     return ResponseEntity.ok(payment);
   }
 
+  /**
+   * 超时测试接口
+   * @return
+   * @throws InterruptedException
+   */
+  @GetMapping(value = "timeout")
+  public ResponseEntity<String> timeout() throws InterruptedException {
+
+    TimeUnit.SECONDS.sleep(6);
+    return ResponseEntity.ok("OK");
+  }
 }

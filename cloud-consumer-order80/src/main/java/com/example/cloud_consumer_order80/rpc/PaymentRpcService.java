@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * @date 2020/7/8 8:44
  */
 @Component
-@FeignClient("CLOUD-PAYMENT-SERVICE")
+@FeignClient(value = "CLOUD-PAYMENT-SERVICE", configuration = {})
 public interface PaymentRpcService {
 
   @PostMapping(value = "/payment/create")
@@ -19,4 +19,7 @@ public interface PaymentRpcService {
 
   @GetMapping(value = "/payment/get/{id}")
   ResponseEntity<Payment> getPaymentById(@PathVariable("id") Long id);
+
+  @GetMapping(value = "timeout")
+  ResponseEntity<String> timeout();
 }
