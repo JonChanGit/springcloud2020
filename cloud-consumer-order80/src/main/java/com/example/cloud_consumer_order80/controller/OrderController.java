@@ -1,6 +1,7 @@
 package com.example.cloud_consumer_order80.controller;
 
 import com.example.cloud_api_commons.entity.Payment;
+import com.example.cloud_consumer_order80.lb.LoadBalanced;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -24,6 +26,7 @@ public class OrderController {
   private RestTemplate restTemplate;
 
   private DiscoveryClient discoveryClient;
+  private LoadBalanced loadBalanced;
 
 
   @PostMapping(value = "/consumer/payment/create")
@@ -57,4 +60,18 @@ public class OrderController {
 
     return this.discoveryClient;
   }
+
+  @GetMapping("/consumer/payment/lb/{id}")
+  public ResponseEntity<Payment> getPaymentLB(@PathVariable("id") Long id) {
+    // 通过容器中的 discoveryClient和服务名来获取服务集群
+    List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+    if(instances == null || instances.size() <= 0) {
+      return null;
+    }
+    // 传入服务集群来计算出获取具体的服务实例
+    ServiceInstance serviceInstance = loadBalanced.instances(instances);
+    URI uri = serviceInstance.getUri();
+    return  restTemplate.getForEntity(uri + "/payment/get/" + id, Payment.class);
+  }
+
 }

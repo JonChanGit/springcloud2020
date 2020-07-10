@@ -11,7 +11,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 @EnableEurekaClient
 @EnableDiscoveryClient
 // 指定某个服务使用哪种规则配置
-@RibbonClient(name = "CLOUD-PAYMENT-SERVICE",configuration = MySelfRule.class)
+// @RibbonClient(name = "CLOUD-PAYMENT-SERVICE",configuration = MySelfRule.class)
 public class CloudOrderApplication80 {
 
     public static void main(String[] args) {
