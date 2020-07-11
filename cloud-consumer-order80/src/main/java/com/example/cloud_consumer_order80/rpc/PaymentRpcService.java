@@ -1,5 +1,6 @@
 package com.example.cloud_consumer_order80.rpc;
 
+import com.example.cloud_consumer_order80.rpc.fallback.PaymentRpcServiceFallback;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @date 2020/7/11 14:11
  */
 @Component
-@FeignClient(value = "CLOUD-PAYMENT-SERVICE", configuration = {})
+@FeignClient(value = "CLOUD-PAYMENT-SERVICE", configuration = {}, fallback = PaymentRpcServiceFallback.class)
 public interface PaymentRpcService {
 
   @GetMapping(value = "/ok/{id}")

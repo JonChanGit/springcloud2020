@@ -22,9 +22,6 @@ import java.util.List;
 @RestController
 @Slf4j
 @AllArgsConstructor
-@DefaultProperties(defaultFallback = "paymentInfo_Global_FallbackMethod", commandProperties = {
-  @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
-})
 public class OrderController {
 
   private PaymentRpcService rpcService;
@@ -34,35 +31,14 @@ public class OrderController {
     return rpcService.ok(id);
   }
 
-  @HystrixCommand(fallbackMethod = "paymentInfo_TimeoutFallbackMethod", commandProperties = {
-    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000")
-  })
   @GetMapping(value = "/timeout/{id}")
   ResponseEntity<String> timeOut(@PathVariable("id") Long id) {
     return rpcService.timeOut(id);
   }
 
-  @HystrixCommand()
   @GetMapping(value = "/timeout/default/{id}")
   ResponseEntity<String> defaultTimeOut(@PathVariable("id") Long id) {
     return rpcService.timeOut(id);
-  }
-
-  /**
-   * 签名（除方法名）要和切入方法完全一致
-   * @param id
-   * @return
-   */
-  public ResponseEntity<String> paymentInfo_TimeoutFallbackMethod(@PathVariable("id") Long id) {
-    return ResponseEntity.ok("/(ToT)/我是消费者80，调用8001支付系统繁忙，请10秒钟后重新尝试、\t");
-  }
-
-  /**
-   * 默认fallback方法
-   * @return
-   */
-  public ResponseEntity<String> paymentInfo_Global_FallbackMethod() {
-    return ResponseEntity.ok("Global异常处理信息，请稍后再试， /(ToT)/");
   }
 
 }
