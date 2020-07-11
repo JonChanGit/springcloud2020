@@ -17,18 +17,18 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
   private PaymentService paymentService;
 
-  @PostMapping(value = "/payment/create")
-  public ResponseEntity<Void> create(@RequestBody Payment payment) {
-    paymentService.create(payment);
-    log.info("****插入结果: SUCCESS");
-    return ResponseEntity.ok().build();
+
+  @GetMapping(value = "/ok/{id}")
+  public ResponseEntity<String> ok(@PathVariable("id") Long id) {
+    String payment = paymentService.paymentInfo(id);
+    log.info("****查询结果:" + payment);
+    return ResponseEntity.ok(payment);
   }
 
-  @GetMapping(value = "/payment/get/{id}")
-  public ResponseEntity<Payment> getPaymentById(@PathVariable("id") Long id) {
-    Payment payment = paymentService.getPaymentById(id);
+  @GetMapping(value = "/timeout/{id}")
+  public ResponseEntity<String> timeOut(@PathVariable("id") Long id) {
+    String payment = paymentService.paymentInfo_Timeout(id);
     log.info("****查询结果:" + payment);
-
     return ResponseEntity.ok(payment);
   }
 

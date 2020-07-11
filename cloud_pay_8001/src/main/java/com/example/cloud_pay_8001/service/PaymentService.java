@@ -1,9 +1,9 @@
 package com.example.cloud_pay_8001.service;
 
-import com.example.cloud_api_commons.entity.Payment;
-import com.example.cloud_pay_8001.dao.PaymentDao;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Jon Chan
@@ -12,13 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class PaymentService {
-  private PaymentDao paymentDao;
-
-  public void create(Payment payment){
-    paymentDao.insert(payment);
+  public String paymentInfo(Long id){
+    return "Thread Name : " + Thread.currentThread().getName() + " \t id: "+ id;
   }
-
-  public Payment getPaymentById(Long id){
-    return paymentDao.findById(id);
+  public String paymentInfo_Timeout(Long id){
+    try {
+      TimeUnit.SECONDS.sleep(3);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    return "Thread Name : " + Thread.currentThread().getName() + " \t id: "+ id;
   }
 }
