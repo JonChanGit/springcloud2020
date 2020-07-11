@@ -2,6 +2,7 @@ package com.example.cloud_consumer_order80.controller;
 
 import com.example.cloud_api_commons.entity.Payment;
 import com.example.cloud_consumer_order80.rpc.PaymentRpcService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,9 @@ import java.util.List;
 @RestController
 @Slf4j
 @AllArgsConstructor
+@DefaultProperties(defaultFallback = "paymentInfo_Global_FallbackMethod", commandProperties = {
+  @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+})
 public class OrderController {
 
   private PaymentRpcService rpcService;
@@ -38,6 +42,12 @@ public class OrderController {
     return rpcService.timeOut(id);
   }
 
+  @HystrixCommand()
+  @GetMapping(value = "/timeout/default/{id}")
+  ResponseEntity<String> defaultTimeOut(@PathVariable("id") Long id) {
+    return rpcService.timeOut(id);
+  }
+
   /**
    * 签名（除方法名）要和切入方法完全一致
    * @param id
@@ -45,6 +55,14 @@ public class OrderController {
    */
   public ResponseEntity<String> paymentInfo_TimeoutFallbackMethod(@PathVariable("id") Long id) {
     return ResponseEntity.ok("/(ToT)/我是消费者80，调用8001支付系统繁忙，请10秒钟后重新尝试、\t");
+  }
+
+  /**
+   * 默认fallback方法
+   * @return
+   */
+  public ResponseEntity<String> paymentInfo_Global_FallbackMethod() {
+    return ResponseEntity.ok("Global异常处理信息，请稍后再试， /(ToT)/");
   }
 
 }

@@ -27,7 +27,7 @@ public class PaymentService {
     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
   })
   public String paymentInfo_Timeout(Long id){
-    System.out.printf(1/0 + "");
+    // System.out.printf(1/0 + "");
     try {
       TimeUnit.SECONDS.sleep(7);
     } catch (Exception e) {
