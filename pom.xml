@@ -12,6 +12,7 @@
     <module>cloud-api-commons</module>
     <module>cloud_eureka_server_7001</module>
     <module>cloud-consumer-hystrix-dashboard9001</module>
+    <module>cloud-gateway-gateway9527</module>
   </modules>
   <name>springcloud2020</name>
   <packaging>pom</packaging>
