@@ -13,4 +13,5 @@ import org.springframework.stereotype.Component;
 @Data
 public class ServiceNameProperties {
   private String provider;
+  private String info;
 }

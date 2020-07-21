@@ -3,7 +3,10 @@ package com.example.cloud_consumer_order80.controller;
 import com.example.cloud_api_commons.entity.Payment;
 import com.example.cloud_consumer_order80.config.ServiceNameProperties;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -14,10 +17,13 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class OrderController {
-  private RestTemplate restTemplate;
-  private ServiceNameProperties serviceProperties;
+  private final RestTemplate restTemplate;
+  private final ServiceNameProperties serviceProperties;
+
+  //@Value("${services.info}")
+  //private String info;
 
   @PostMapping(value = "/consumer/payment/create")
   public ResponseEntity<Void> create(@RequestBody Payment payment) {
@@ -27,5 +33,10 @@ public class OrderController {
   @GetMapping("/consumer/payment/get/{id}")
   public ResponseEntity<Payment> getPayment(@PathVariable("id") Long id) {
     return restTemplate.getForEntity(serviceProperties.getProvider() + "/payment/get/" + id, Payment.class);
+  }
+
+  @GetMapping("info")
+  public ResponseEntity<String> getLog() {
+    return ResponseEntity.ok(serviceProperties.getInfo());
   }
 }
