@@ -21,8 +21,8 @@ import java.util.List;
 @Slf4j
 @AllArgsConstructor
 public class OrderController {
-  // public static final String PAYMENT_URL = "http://localhost:8001";
-  public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
+  public static final String PAYMENT_URL = "http://localhost:8001";
+  // public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
   private RestTemplate restTemplate;
 
   private DiscoveryClient discoveryClient;
@@ -72,6 +72,11 @@ public class OrderController {
     ServiceInstance serviceInstance = loadBalanced.instances(instances);
     URI uri = serviceInstance.getUri();
     return  restTemplate.getForEntity(uri + "/payment/get/" + id, Payment.class);
+  }
+
+  @GetMapping(value="/consumer/payment/zipkin")
+  public String paymentZipkin() {
+    return restTemplate.getForObject( PAYMENT_URL + "/payment/zipkin/",String.class);
   }
 
 }

@@ -32,4 +32,13 @@ public class PaymentController {
     return ResponseEntity.ok(payment);
   }
 
+  /**
+   * zipkin 测试接口
+   * @return
+   */
+  @GetMapping(value="/payment/zipkin")
+  public String paymentZipkin() {
+    return "hello,i am paymentZipkin server fallback,O(∩_∩)O哈哈~";
+  }
+
 }
