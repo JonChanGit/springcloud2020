@@ -11,6 +11,17 @@ spring:
     url: jdbc:mysql://localhost:3306/db2019?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: 123456
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #配置Nacos地址
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.example.cloud_pay_8001.entity
