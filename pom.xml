@@ -13,6 +13,7 @@
     <module>cloud_eureka_server_7001</module>
     <module>cloud_eureka_server_7002</module>
     <module>cloud-stream-rabbitmq-provider8801</module>
+    <module>cloud-stream-rabbitmq-consumer8802</module>
   </modules>
   <name>springcloud2020</name>
   <packaging>pom</packaging>
