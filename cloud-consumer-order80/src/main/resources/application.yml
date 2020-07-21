@@ -4,3 +4,10 @@ server:
 spring:
   application:
     name: cloud-order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #配置Nacos地址
+
+services:
+  provider: http://cloud-payment-service
