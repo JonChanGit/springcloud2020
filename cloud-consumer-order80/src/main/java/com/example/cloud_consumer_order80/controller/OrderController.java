@@ -2,11 +2,8 @@ package com.example.cloud_consumer_order80.controller;
 
 import com.example.cloud_api_commons.entity.Payment;
 import com.example.cloud_consumer_order80.config.ServiceNameProperties;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;

@@ -13,6 +13,10 @@ spring:
         file-extension: yaml #指定yaml格式配置
         #group: DEFAULT_GROUP # 指定分组
         #namespace: e90dc63c-8138-4075-a869-bce9b2b38dd9 #填写命名空间ID
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
 
 
 #${prefix}-${spring.profile.active}.${file-extension}
