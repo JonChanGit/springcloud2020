@@ -34,13 +34,15 @@ public class CircleBreakerController {
    *
    * Sentinel控制台规则优先触发
    *
+   * exceptionsToIgnore 忽略fallback异常处理
+   *
    * @param id
    * @return
    */
   @RequestMapping("/consumer/fallback/{id}")
 //    @SentinelResource(value = "fallback")
 //    @SentinelResource(value = "fallback",fallback ="handlerFallback")
-  @SentinelResource(value = "fallback",fallback ="handlerFallback",blockHandler = "blockHandler")
+  @SentinelResource(value = "fallback",fallback ="handlerFallback",blockHandler = "blockHandler", exceptionsToIgnore = {IllegalArgumentException.class})
   public ResponseEntity<Payment> fallback(@PathVariable Long id) {
     ResponseEntity<Payment> result =  restTemplate.getForEntity(serviceProperties.getProvider() + "/payment/get/" + id, Payment.class);
 
