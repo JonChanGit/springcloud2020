@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class CloudOrderApplication80 {
 
     public static void main(String[] args) {
-        SpringApplication.run(CloudOrderApplication80.class, args);
+        SpringApplication.run(new Class[]{CloudOrderApplication80.class}, args);
     }
 
 }

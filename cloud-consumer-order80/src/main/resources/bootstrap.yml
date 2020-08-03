@@ -17,6 +17,14 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloud-order-service-nacos-config
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
 
 
 #激活Sentinel对Feign的支持
